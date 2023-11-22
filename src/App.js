@@ -82,8 +82,14 @@ function App() {
         </Container>
         <div className="d-flex align-items-center justify-content-center">
           <RenderPagination func={getPage} perPage={number_per_page}data={data}/>
-          <Toggle func={getToggle}/>
+          
         </div>
+
+        <div className="d-flex align-items-center justify-content-center">
+          <Toggle func={getToggle}/>
+
+        </div>
+          
       </header>
     </div>
   );
