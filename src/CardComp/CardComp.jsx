@@ -12,7 +12,7 @@ function CardComp(props){
     }else{
       setPicture("./images/Default.jpg")
     }
-  }, [props.Page]);
+  }, [props.Page,props.setnumber_per_page]);
 
   return (
     <Card className="mx-auto my-2" style={{ width: '18rem', height:'23rem', padding_top: '10prem'}}>
