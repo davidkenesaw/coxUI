@@ -7,6 +7,7 @@ import RenderPagination from './RenderPagination/RenderPagination';
 import { useState, useEffect } from 'react';
 import SizeHook from './SizeHook/SizeHook'
 import Toggle from './Toggle/Toggle'
+import './App.css'
 
 
 
