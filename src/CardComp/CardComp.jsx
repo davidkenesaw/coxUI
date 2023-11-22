@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 function CardComp(props){
   
   const [pictrue,setPicture] = useState("./images/Default.jpg")
-
+  const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined, {currency: "USD", style: "currency"})
   useEffect(() => {
     if(props.showBridge == true){
         setPicture("./images/thumbnail_Bridge.jpg")
@@ -25,7 +25,7 @@ function CardComp(props){
       
       <Card.Footer className="text-right">
         <Card.Text style={{color:"green"}}class='ml-auto fw-bold'>
-          ${props.Price}
+          {CURRENCY_FORMATTER.format(props.Price)}
         </Card.Text>
       </Card.Footer>
     </Card>

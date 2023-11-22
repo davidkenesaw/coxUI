@@ -6,9 +6,13 @@ import Col from 'react-bootstrap/Col';
 import RenderPagination from './RenderPagination/RenderPagination';
 import { useState, useEffect } from 'react';
 import SizeHook from './SizeHook/SizeHook'
+import Toggle from './Toggle/Toggle'
+
+
 
 function App() {
   
+  const [toggle,setToggle] = useState(false)
   const [page,setPage] = useState(1);
   const [number_per_page,setnumber_per_page] = useState(4);
   const screenSize = SizeHook();
@@ -17,25 +21,32 @@ function App() {
     console.log(data);
     setPage(data);
   }
-
+  const getToggle = (data) => {
+    console.log(data);
+    setToggle(data);
+  }
   useEffect(() => {
     
-    if(screenSize.width <"1500"){
-      setnumber_per_page(4)
+    if(toggle==true){
+      if(screenSize.width <"1500"){
+        setnumber_per_page(4)
+      }
+      if(screenSize.width <"1401" && screenSize.width > "991"){
+        setnumber_per_page(3)
+      }
+      if(screenSize.width <="992" && screenSize.width > "770"){
+        setnumber_per_page(2)
+      }
+      if(screenSize.width <="770"){
+        setnumber_per_page(1)
+      }
+      if(screenSize.width >"1500"){
+        setnumber_per_page(4)
+      }
+    }else{
+      setnumber_per_page(12)
     }
-    if(screenSize.width <"1401" && screenSize.width > "991"){
-      setnumber_per_page(3)
-    }
-    if(screenSize.width <="992" && screenSize.width > "770"){
-      setnumber_per_page(2)
-    }
-    if(screenSize.width <="770"){
-      setnumber_per_page(1)
-    }
-    if(screenSize.width >"1500"){
-      setnumber_per_page(4)
-    }
-  },[,screenSize.width]);
+  },[,screenSize.width,toggle]);
 
   return (
 
@@ -43,9 +54,9 @@ function App() {
     <div className="App">
       <header className="App-header">
       <div>
-      <h1>Screen Size Detection with React Hook</h1>
-      <p>Width: {screenSize.width}</p>
-      <p>Height: {screenSize.height}</p>
+      
+      {/*<p>Width: {screenSize.width}</p> 
+      <p>Height: {screenSize.height}</p>*/}
     </div>
         <Container class="gap-3">
           <Row>
@@ -68,8 +79,10 @@ function App() {
             }).filter((item,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page )}
           </Row>
         </Container>
-
-        <RenderPagination func={getPage} perPage={number_per_page}data={data}/>
+        <div className="d-flex align-items-center justify-content-center">
+          <RenderPagination func={getPage} perPage={number_per_page}data={data}/>
+          <Toggle func={getToggle}/>
+        </div>
       </header>
     </div>
   );

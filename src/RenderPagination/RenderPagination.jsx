@@ -25,7 +25,7 @@ const RenderPagination = (props) => {
 
 
     return (
-        <Pagination>{items}</Pagination>
+        <Pagination >{items}</Pagination>
     )
 }
 
