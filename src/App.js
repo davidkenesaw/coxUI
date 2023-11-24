@@ -14,7 +14,9 @@ import './App.css'
 
 function App() {
   
+
   const [toggle,setToggle] = useState(false)
+  const [array,setArray] = useState([])
   const [searchVal,setSearchVal] = useState("")
   const [page,setPage] = useState(1);
   const [number_per_page,setnumber_per_page] = useState(4);
@@ -55,6 +57,30 @@ function App() {
     }
   },[,screenSize.width,toggle]);
 
+
+  useEffect(() => {
+    setArray(data.filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
+            .map((card,index) =>{
+              return(
+                          
+                <Col md="auto">
+                  <CardComp 
+                    Heading={card.Heading} 
+                    Subheading={card.Subheading} 
+                    Price={card.Price}
+                    showBridge={card.showBridge}
+                    Page={page}
+                    setnumber_per_page={number_per_page}
+                    searchVal={searchVal}
+                  />
+                        
+                </Col>
+                          
+              )
+            }))
+    
+            
+  },[,number_per_page,page,searchVal]);
   return (
 
   
@@ -69,26 +95,8 @@ function App() {
           <SearchBar func={getInput}/>
         </div>
         <Container class="gap-3">
-          <Row>
-            {data.filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
-            .map((card,index) =>{
-              return(
-                          
-                <Col class='mt-1'>
-                  <CardComp 
-                    Heading={card.Heading} 
-                    Subheading={card.Subheading} 
-                    Price={card.Price}
-                    showBridge={card.showBridge}
-                    Page={page}
-                    setnumber_per_page={number_per_page}
-                    searchVal={searchVal}
-                  />
-                        
-                </Col>
-                          
-              )
-            })}
+          <Row className="justify-content-md-center">
+            {array}
           </Row>
         </Container>
         <div className="d-flex align-items-center justify-content-center">
