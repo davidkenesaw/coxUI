@@ -64,13 +64,16 @@ function App() {
       
       {/*<p>Width: {screenSize.width}</p> 
       <p>Height: {screenSize.height}</p>*/}
-    </div>
+        </div>
+        <div class="text-center mx-auto mt-1 pt-5" style={{width: "480px"}}>
+          <SearchBar func={getInput}/>
+        </div>
         <Container class="gap-3">
           <Row>
             {data.filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
             .map((card,index) =>{
               return(
-                      
+                          
                 <Col class='mt-1'>
                   <CardComp 
                     Heading={card.Heading} 
@@ -79,27 +82,26 @@ function App() {
                     showBridge={card.showBridge}
                     Page={page}
                     setnumber_per_page={number_per_page}
+                    searchVal={searchVal}
                   />
-                    
+                        
                 </Col>
-                      
+                          
               )
             })}
           </Row>
         </Container>
         <div className="d-flex align-items-center justify-content-center">
           <RenderPagination func={getPage} perPage={number_per_page}data={data}/>
-          
+              
         </div>
 
         <div className="d-flex align-items-center justify-content-center">
           <Toggle func={getToggle}/>
 
         </div>
-        <div className="d-flex align-items-center justify-content-center">
-          <SearchBar func={getInput}/>
-
-        </div>
+        
+          
           
       </header>
     </div>

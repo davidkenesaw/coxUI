@@ -18,7 +18,7 @@ const SearchBar = (props) => {
 
 
     return (
-        <input value={value} onChange={handleChange}/>
+        <input class='mt-1 form-control' value={value} onChange={handleChange} placeholder="Search"/>
     )
 }
 
