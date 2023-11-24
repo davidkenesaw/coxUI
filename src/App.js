@@ -7,6 +7,7 @@ import RenderPagination from './RenderPagination/RenderPagination';
 import { useState, useEffect } from 'react';
 import SizeHook from './SizeHook/SizeHook'
 import Toggle from './Toggle/Toggle'
+import SearchBar from './SearchBar/SearchBar'
 import './App.css'
 
 
@@ -14,6 +15,7 @@ import './App.css'
 function App() {
   
   const [toggle,setToggle] = useState(false)
+  const [searchVal,setSearchVal] = useState("")
   const [page,setPage] = useState(1);
   const [number_per_page,setnumber_per_page] = useState(4);
   const screenSize = SizeHook();
@@ -25,6 +27,10 @@ function App() {
   const getToggle = (data) => {
     console.log(data);
     setToggle(data);
+  }
+  const getInput = (data) => {
+    console.log(data);
+    setSearchVal(data);
   }
   useEffect(() => {
     
@@ -61,7 +67,8 @@ function App() {
     </div>
         <Container class="gap-3">
           <Row>
-            {data.map((card,index) =>{
+            {data.filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
+            .map((card,index) =>{
               return(
                       
                 <Col class='mt-1'>
@@ -77,7 +84,7 @@ function App() {
                 </Col>
                       
               )
-            }).filter((item,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page )}
+            })}
           </Row>
         </Container>
         <div className="d-flex align-items-center justify-content-center">
@@ -87,6 +94,10 @@ function App() {
 
         <div className="d-flex align-items-center justify-content-center">
           <Toggle func={getToggle}/>
+
+        </div>
+        <div className="d-flex align-items-center justify-content-center">
+          <SearchBar func={getInput}/>
 
         </div>
           
