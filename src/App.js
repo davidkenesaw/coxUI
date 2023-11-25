@@ -16,7 +16,7 @@ import './App.css'
 function App() {
   
   const [dropdownVal,setDropdownVal] = useState("")
-  const [toggle,setToggle] = useState(false)
+  const [toggle,setToggle] = useState(true)
   const [array,setArray] = useState([])
   const [searchVal,setSearchVal] = useState("")
   const [page,setPage] = useState(1);

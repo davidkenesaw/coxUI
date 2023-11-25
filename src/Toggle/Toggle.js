@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 
 function Toggle(props) {
-    const [toggle, setToggle] = useState(true)
+    const [toggle, setToggle] = useState(false)
     const [text, setText] = useState("Pagination On")
   
     function toggleOnOff(){
