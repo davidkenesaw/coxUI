@@ -101,7 +101,7 @@ function App() {
             })})
             
             
-  });
+  },[number_per_page,page,searchVal,setArray,toggle, dropdownVal]);
 
   useEffect(() => {
     if(array.length < 4){
