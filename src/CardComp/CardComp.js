@@ -25,7 +25,11 @@ function CardComp(props){
       
       <Card.Footer className="text-right">
         <Card.Text style={{color:"green"}}class='ml-auto fw-bold'>
-          {CURRENCY_FORMATTER.format(props.Price)}
+          {props.Price.toLocaleString("en-US",{
+            style:"currency",
+            currency:"USD",
+            maximumFractionDigits:"0"
+          })}
         </Card.Text>
       </Card.Footer>
     </Card>

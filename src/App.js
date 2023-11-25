@@ -125,6 +125,10 @@ function App() {
         <div class="text-center mx-auto mt-1 pt-5" style={{width: "480px"}}>
           <SearchBar func={getInput}/>
         </div>
+        <div className="d-flex align-items-center justify-content-center">
+          <DropDownButton func={getDropdown}/>
+
+        </div>
         <Container class="gap-3">
           <Row className="justify-content-md-center">
             {array}
@@ -132,18 +136,13 @@ function App() {
         </Container>
         <div className="d-flex align-items-center justify-content-center">
           <RenderPagination func={getPage} perPage={number_per_page}data={data}/>
-              
         </div>
-
         <div className="d-flex align-items-center justify-content-center">
           <Toggle func={getToggle}/>
 
         </div>
         
-        <div className="d-flex align-items-center justify-content-center">
-          <DropDownButton func={getDropdown}/>
-
-        </div>
+        
           
       </header>
     </div>
