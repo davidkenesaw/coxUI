@@ -93,6 +93,7 @@ function App() {
                     Page={page}
                     setnumber_per_page={number_per_page}
                     searchVal={searchVal}
+                    dropdownVal={dropdownVal}
                   />
                         
                 </Col>
