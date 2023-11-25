@@ -125,7 +125,7 @@ function App() {
         <div class="text-center mx-auto mt-1 pt-5" style={{width: "480px"}}>
           <SearchBar func={getInput}/>
         </div>
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-flex align-items-center justify-content-center pt-2">
           <DropDownButton func={getDropdown}/>
 
         </div>
