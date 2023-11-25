@@ -71,9 +71,9 @@ function App() {
       if(dropdownVal == "Price"){
         return a.Price-b.Price
       }if(dropdownVal == "Heading"){
-        return a.Heading>b.Heading
+        return a.Heading === b.Heading ? 0 : a.Heading < b.Heading ? -1 : 1;
       }if(dropdownVal == "Subheading"){
-        return a.Subheading>b.Subheading
+        return a.Subheading === b.Subheading ? 0 : a.Subheading < b.Subheading ? -1 : 1
       }else{
         return
       }
