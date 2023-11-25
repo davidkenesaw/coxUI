@@ -8,19 +8,22 @@ import { useState, useEffect } from 'react';
 import SizeHook from './SizeHook/SizeHook'
 import Toggle from './Toggle/Toggle'
 import SearchBar from './SearchBar/SearchBar'
+import DropDownButton from './DrobDownButton/DropDownButton';
 import './App.css'
 
 
 
 function App() {
   
-
+  const [dropdownVal,setDropdownVal] = useState("")
   const [toggle,setToggle] = useState(false)
   const [array,setArray] = useState([])
   const [searchVal,setSearchVal] = useState("")
   const [page,setPage] = useState(1);
   const [number_per_page,setnumber_per_page] = useState(4);
   const screenSize = SizeHook();
+  const [length,setLength] = useState(data.length)
+
 
   const getPage = (data) => {
     console.log(data);
@@ -33,6 +36,10 @@ function App() {
   const getInput = (data) => {
     console.log(data);
     setSearchVal(data);
+  }
+  const getDropdown = (data) => {
+    console.log(data);
+    setDropdownVal(data);
   }
   useEffect(() => {
     
@@ -55,11 +62,25 @@ function App() {
     }else{
       setnumber_per_page(12)
     }
-  },[,screenSize.width,toggle]);
+  },[dropdownVal,screenSize.width,toggle]);
 
 
   useEffect(() => {
-    setArray(data.filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
+    setArray(()=> {
+    return data.sort((a,b)=>{
+      if(dropdownVal == "Price"){
+        return a.Price-b.Price
+      }if(dropdownVal == "Heading"){
+        return a.Heading>b.Heading
+      }if(dropdownVal == "Subheading"){
+        return a.Subheading>b.Subheading
+      }else{
+        return
+      }
+    }).filter((card,index)=>
+      card.Heading.includes(searchVal)
+    )
+    .filter((card,index)=>index > page * number_per_page - number_per_page -1 && index < page * number_per_page && card.Heading.includes(searchVal))
             .map((card,index) =>{
               return(
                           
@@ -77,10 +98,19 @@ function App() {
                 </Col>
                           
               )
-            }))
-    
+            })})
             
-  },[,number_per_page,page,searchVal]);
+            
+  });
+
+  useEffect(() => {
+    if(array.length < 4){
+      console.log(array.length)
+    }
+    
+  },[searchVal,array.length]);
+
+
   return (
 
   
@@ -109,7 +139,10 @@ function App() {
 
         </div>
         
-          
+        <div className="d-flex align-items-center justify-content-center">
+          <DropDownButton func={getDropdown}/>
+
+        </div>
           
       </header>
     </div>
